@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import { request } from './api';
 import { useEffect, useState } from 'react';
+import { Background } from './AppStyled';
 
 function App() {
   const [markets, setMarkets] = useState<any[]>();
@@ -21,14 +21,16 @@ function App() {
   // market_warning: "NONE"
 
   return (
-    <>
-      {markets?.map((e) => (
-        <div style={{ display: 'flex' }}>
-          <img src={`https://static.upbit.com/logos/${e.market.slice(4)}.png`} />
-          <div>{e.korean_name + ' / ' + e.english_name}</div>
-        </div>
-      ))}
-    </>
+    <Background>
+      <div style={{ maxWidth: 500 }}>
+        {markets?.map((e) => (
+          <div style={{ display: 'flex' }}>
+            <img src={`https://static.upbit.com/logos/${e.market.slice(4)}.png`} />
+            <div>{e.korean_name + ' / ' + e.english_name}</div>
+          </div>
+        ))}
+      </div>
+    </Background>
   );
 }
 
