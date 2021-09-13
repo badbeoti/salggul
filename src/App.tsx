@@ -4,74 +4,62 @@ import { Background } from './AppStyled';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store';
-import ascentRatesSlice from './features/AscentRates/slice';
-import useAscentRates from './features/AscentRates/useAscentRates';
+import ascentRatesSlice, { RateObj } from './features/AscentRates/slice';
+import useAscentRates, { Days } from './features/AscentRates/useAscentRates';
 
 const _sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
 
 function App() {
-  const [markets, setMarkets] = useState<any[]>();
-  const [trends, setTrends] = useState<any[]>();
-  const { defaultRates, rates7days, ratesByDays } = useAscentRates();
-  const rates = useSelector(defaultRates);
-  const rates7 = useSelector(rates7days);
-  const rates30 = useSelector(ratesByDays(180));
-
-  useEffect(() => {
-    const test = async () => {
-      const price = await api.getPriceFromDate('KRW-BTC');
-
-      const allMarkets = await api.getAllMarket();
-      setMarkets(allMarkets.filter((e: any) => e.market[0] === 'K'));
-
-      const allTrends = await api.getTrendsRate();
-      setTrends(
-        allTrends
-          .filter((e: any) => e.code[11] === 'K')
-          .sort((a: any, b: any) => {
-            if (a.changeRate7Days > b.changeRate7Days) return 1;
-            if (a.changeRate7Days < b.changeRate7Days) return -1;
-            return 0;
-          })
-      );
-
-      console.log(
-        price,
-        allMarkets.filter((e: any) => e.market[0] === 'K'),
-        allTrends
-          .filter((e: any) => e.code[11] === 'K')
-          .sort((a: any, b: any) => {
-            if (a.changeRate7Days > b.changeRate7Days) return 1;
-            if (a.changeRate7Days < b.changeRate7Days) return -1;
-            return 0;
-          })
-          .reverse()
-          .slice(0, 10)
-      );
-
-      // for (const e of allMarkets.filter((e: any) => e.market[0] === 'K')) {
-      //   const test = await api.getPriceFromDate(e.market, '2021-09-09 00:00:00');
-      //   await _sleep(300);
-      //   console.log(test);
-      // }
-    };
-
-    console.log(moment().subtract(365, 'days').format('YYYY-MM-DD'));
-
-    test();
-  }, []);
-
-  console.log(rates, rates7, rates30);
+  const { rates7, rates30, rates90, rates180, rates365 } = useAscentRates();
 
   return (
     <Background>
       <div style={{ maxWidth: 500 }}>
-        {markets?.map((e) => (
-          <div style={{ display: 'flex' }}>
-            <img src={`https://static.upbit.com/logos/${e.market.slice(4)}.png`} />
-            <div>{e.korean_name + ' / ' + e.english_name}</div>
-          </div>
-        ))}
+        <button
+          onClick={() =>
+            rates7.forEach((e) =>
+              console.log(`${e.code} ${Number(e[`changeRate${7}Days`] * 100).toFixed(2)}%`)
+            )
+          }
+        >
+          7
+        </button>
+        <button
+          onClick={() =>
+            rates30.forEach((e) =>
+              console.log(`${e.code} ${Number(e[`changeRate${30}Days`] * 100).toFixed(2)}%`)
+            )
+          }
+        >
+          30
+        </button>
+        <button
+          onClick={() =>
+            rates90.forEach((e) =>
+              console.log(`${e.code} ${Number(e[`changeRate${90}Days`] * 100).toFixed(2)}%`)
+            )
+          }
+        >
+          90
+        </button>
+        <button
+          onClick={() =>
+            rates180.forEach((e) =>
+              console.log(`${e.code} ${Number(e[`changeRate${180}Days`] * 100).toFixed(2)}%`)
+            )
+          }
+        >
+          180
+        </button>
+        <button
+          onClick={() =>
+            rates365.forEach((e) =>
+              console.log(`${e.code} ${Number(e[`changeRate${365}Days`] * 100).toFixed(2)}%`)
+            )
+          }
+        >
+          365
+        </button>
       </div>
     </Background>
   );

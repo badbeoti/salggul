@@ -14,7 +14,7 @@ export const api = {
       `${API_PATH}candles/days?market=${market}${date ? `&to=${date}` : ''}&count=1`
     );
 
-    return res.data;
+    return res.data[0].trade_price as number;
   },
 
   getTrendsRate: async () => {
