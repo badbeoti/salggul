@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { RateObj } from './features/AscentRates/slice';
 
 const API_PATH = 'https://api.upbit.com/v1/';
 
@@ -21,6 +22,6 @@ export const api = {
       'https://crix-api-cdn.upbit.com/v1/crix/trends/interval_change_rate'
     );
 
-    return res.data;
+    return res.data as RateObj[];
   },
 };

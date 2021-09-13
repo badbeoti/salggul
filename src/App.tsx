@@ -2,12 +2,20 @@ import { api } from './api';
 import { useEffect, useState } from 'react';
 import { Background } from './AppStyled';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './store';
+import ascentRatesSlice from './features/AscentRates/slice';
+import useAscentRates from './features/AscentRates/useAscentRates';
 
 const _sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
 
 function App() {
   const [markets, setMarkets] = useState<any[]>();
   const [trends, setTrends] = useState<any[]>();
+  const { defaultRates, rates7days, ratesByDays } = useAscentRates();
+  const rates = useSelector(defaultRates);
+  const rates7 = useSelector(rates7days);
+  const rates30 = useSelector(ratesByDays(180));
 
   useEffect(() => {
     const test = async () => {
@@ -38,7 +46,6 @@ function App() {
             return 0;
           })
           .reverse()
-          // .map((e: any) => e.code.slice(11))
           .slice(0, 10)
       );
 
@@ -53,10 +60,8 @@ function App() {
 
     test();
   }, []);
-  //   english_name: "The Graph"
-  // korean_name: "그래프"
-  // market: "BTC-GRT"
-  // market_warning: "NONE"
+
+  console.log(rates, rates7, rates30);
 
   return (
     <Background>
