@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     const test = async () => {
-      const price = await api.getPriceFromDate('KRW-BTC', '2021-09-05 00:00:00');
+      const price = await api.getPriceFromDate('KRW-BTC');
 
       const allMarkets = await api.getAllMarket();
       setMarkets(allMarkets.filter((e: any) => e.market[0] === 'K'));
@@ -38,7 +38,7 @@ function App() {
             return 0;
           })
           .reverse()
-          .map((e: any) => e.code.slice(11))
+          // .map((e: any) => e.code.slice(11))
           .slice(0, 10)
       );
 
