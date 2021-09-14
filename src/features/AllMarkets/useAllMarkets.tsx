@@ -9,24 +9,14 @@ export default function useAllMarkets() {
   const dispatch = useDispatch();
   const defaultMarkets = (state: RootState) => state.allMarketsSlice.markets;
   const [inputValue, setInputValue] = useState<string>('');
-  const [searchResult, setSearchResult] = useState<MarketObj[]>();
+  const [searchResult, setSearchResult] = useState<MarketObj[]>([]);
 
   const allMarkets = useSelector(defaultMarkets);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
   };
-
-  const marketsByInputValue = (value: string) =>
-    createSelector(defaultMarkets, (e: MarketObj[]) =>
-      [...e].filter(
-        (e) =>
-          e.english_name.includes(value) ||
-          e.korean_name.includes(value) ||
-          e.market.slice(4).includes(value)
-      )
-    );
 
   useEffect(() => {
     dispatch(allMarketsSlice.actions.getMarkets());
@@ -42,5 +32,5 @@ export default function useAllMarkets() {
     setSearchResult(result);
   }, [inputValue]);
 
-  return { allMarkets, onChange, searchResult };
+  return { allMarkets, onChangeSearch, searchResult };
 }

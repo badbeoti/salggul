@@ -2,22 +2,37 @@ import { api } from './api';
 import React, { useEffect, useState } from 'react';
 import { Background } from './AppStyled';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './store';
-import ascentRatesSlice, { RateObj } from './features/AscentRates/slice';
-import useAscentRates, { Days } from './features/AscentRates/useAscentRates';
+import useAscentRates from './features/AscentRates/useAscentRates';
 import useAllMarkets from './features/AllMarkets/useAllMarkets';
+import useUserData from './features/UserData/useUserData';
+import { resultTemplate } from './utils';
 
 const _sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
 
 function App() {
   const { rates7, rates30, rates90, rates180, rates365 } = useAscentRates();
-  const { allMarkets, onChange, searchResult } = useAllMarkets();
+  const { allMarkets, onChangeSearch, searchResult } = useAllMarkets();
+  const { onChangeUserInput, onClickGetResult, userData, userResult } = useUserData();
 
   return (
     <Background>
       <div style={{ maxWidth: 500 }}>
-        <input type="text" onChange={onChange}></input>
+        <input name="prevDate" type="text" onChange={onChangeUserInput}></input>
+        <br />
+        <input name="market" type="text" onChange={onChangeUserInput}></input>
+        <br />
+        <input name="seedMoney" type="number" onChange={onChangeUserInput}></input>
+        <br />
+        <button onClick={onClickGetResult}>getResult</button>
+        <br />
+        <br />
+        {userResult.isGetResult && (
+          <span style={{ color: userResult.ascent > 0 ? 'red' : 'blue' }}>
+            {resultTemplate(userResult.curSeedMoney, userResult.ascent)}
+          </span>
+        )}
+        <br />
+        <input type="text" onChange={onChangeSearch}></input>
         {searchResult &&
           searchResult.map((e) => (
             <div style={{ display: 'flex' }}>
