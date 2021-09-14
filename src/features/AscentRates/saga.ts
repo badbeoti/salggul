@@ -14,7 +14,7 @@ export function* handleGetRates() {
       })
       .filter((e: RateObj) => e.code[0] === 'K');
     yield put(ascentRatesSlice.actions.setRates(newRes));
-  } catch (e) {
-    yield put(ascentRatesSlice.actions.getError('error'));
+  } catch (e: any) {
+    yield put(ascentRatesSlice.actions.getError(`${e.message}`));
   }
 }
