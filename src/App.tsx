@@ -7,8 +7,6 @@ import useAllMarkets from './features/AllMarkets/useAllMarkets';
 import useUserData from './features/UserData/useUserData';
 import { resultTemplate } from './utils';
 
-const _sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
-
 function App() {
   const { rates7, rates30, rates90, rates180, rates365 } = useAscentRates();
   const { allMarkets, onChangeSearch, searchResult } = useAllMarkets();
@@ -16,7 +14,7 @@ function App() {
 
   return (
     <Background>
-      <div style={{ maxWidth: 500 }}>
+      <div style={{ width: '100%', maxWidth: 500, height: '100vh' }}>
         <input name="prevDate" type="text" onChange={onChangeUserInput}></input>
         <br />
         <input name="market" type="text" onChange={onChangeUserInput}></input>
