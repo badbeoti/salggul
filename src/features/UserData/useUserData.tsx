@@ -7,11 +7,14 @@ import userDataSlice, { UserObj } from './slice';
 
 import { Days } from '../AscentRates/useAscentRates';
 import moment from 'moment';
+import { MarketObj } from '../AllMarkets/slice';
 
 export default function useUserData() {
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.userDataSlice.data);
   const userResult = useSelector((state: RootState) => state.userDataSlice.result);
+  const userInputsError = useSelector((state: RootState) => state.userDataSlice.error);
+
   const [directSelectDate, setDirectSelectDate] = useState<boolean>(false);
   const [prevDate, setPrevDate] = useState<string>('30');
 
@@ -49,7 +52,6 @@ export default function useUserData() {
 
   const onClickGetResult = () => {
     dispatch(userDataSlice.actions.getResult());
-    console.log(userResult);
   };
 
   const onChangePrevDate = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,13 +60,12 @@ export default function useUserData() {
       return;
     }
     setPrevDate(e.target.value);
-    console.log(moment().subtract(Number(e.target.value), 'days').format('YYYY-MM-DD'));
   };
 
   const onChangeDirectDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (moment(e.target.value) > moment()) return;
+    // 현재보다 미래의 날짜를 선택 할 경우 리턴 추후 alert 추가
     dispatch(userDataSlice.actions.setData({ name: 'prevDate', value: e.target.value }));
-    console.log(e.target.value);
   };
 
   const onClickDirectDateCancle = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -90,5 +91,6 @@ export default function useUserData() {
     setDirectSelectDate,
     onChangeDirectDate,
     onClickDirectDateCancle,
+    userInputsError,
   };
 }

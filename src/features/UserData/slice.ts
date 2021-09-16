@@ -30,6 +30,7 @@ const userDataSlice = createSlice({
     },
     getResult: (state) => {
       state.isLoading = true;
+      state.error = '';
     },
     setResult: (state, action: PayloadAction<ResultObj>) => {
       state.result = action.payload;

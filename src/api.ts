@@ -14,6 +14,8 @@ export const api = {
       `${API_PATH}candles/days?market=${market}${date ? `&to=${date}` : ''}&count=1`
     );
 
+    if (!res.data.length) return 0;
+
     return res.data[0].trade_price as number;
   },
 

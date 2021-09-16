@@ -17,6 +17,11 @@ export function* handleGetResult() {
 
     const prevPrice: number = yield call(api.getPriceFromDate, market, `${prevDate} 00:00:00`);
 
+    if (prevPrice === 0) {
+      yield put(userDataSlice.actions.getError('선택하신 날짜의 가격 데이터를 찾을 수 없습니다.'));
+      return;
+    }
+
     const curPrice: number = yield call(api.getPriceFromDate, market);
 
     const curSeedMoney = Number(
