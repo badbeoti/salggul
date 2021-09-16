@@ -1,11 +1,9 @@
-import { api } from './api';
-import React, { useEffect, useState } from 'react';
-import { Background } from './AppStyled';
-import moment from 'moment';
+import { Background, CenterCanvas } from './CSS/AppStyled';
 import useAscentRates from './features/AscentRates/useAscentRates';
 import useAllMarkets from './features/AllMarkets/useAllMarkets';
 import useUserData from './features/UserData/useUserData';
 import { resultTemplate } from './utils';
+import UserInputs from './components/UserInputs';
 
 function App() {
   const { rates7, rates30, rates90, rates180, rates365 } = useAscentRates();
@@ -14,7 +12,9 @@ function App() {
 
   return (
     <Background>
-      <div style={{ width: '100%', maxWidth: 500, height: '100vh' }}>
+      <CenterCanvas>
+        <UserInputs />
+        <br />
         <input name="prevDate" type="text" onChange={onChangeUserInput}></input>
         <br />
         <input name="market" type="text" onChange={onChangeUserInput}></input>
@@ -87,7 +87,7 @@ function App() {
         >
           365
         </button>
-      </div>
+      </CenterCanvas>
     </Background>
   );
 }

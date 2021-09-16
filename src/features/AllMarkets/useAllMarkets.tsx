@@ -23,6 +23,11 @@ export default function useAllMarkets() {
   }, []);
 
   useEffect(() => {
+    if (inputValue === '') {
+      setSearchResult([]);
+      return;
+    }
+
     const result = [...allMarkets].filter(
       (e) =>
         e.english_name.toLowerCase().includes(inputValue) ||
