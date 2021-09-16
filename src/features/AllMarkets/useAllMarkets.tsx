@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from '../../store';
 import allMarketsSlice, { MarketObj } from './slice';
+import userDataSlice from '../UserData/slice';
 
 export default function useAllMarkets() {
   const dispatch = useDispatch();
@@ -16,6 +17,12 @@ export default function useAllMarkets() {
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
+  };
+
+  const onClickSelectMarket = (item: MarketObj) => {
+    dispatch(userDataSlice.actions.setData({ name: 'market', value: item.market }));
+    setInputValue(item.market);
+    setSearchResult([]);
   };
 
   useEffect(() => {
@@ -37,5 +44,5 @@ export default function useAllMarkets() {
     setSearchResult(result);
   }, [inputValue]);
 
-  return { allMarkets, onChangeSearch, searchResult };
+  return { allMarkets, onChangeSearch, searchResult, inputValue, onClickSelectMarket };
 }
