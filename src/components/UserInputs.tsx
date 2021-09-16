@@ -1,13 +1,20 @@
+import moment from 'moment';
+
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import useUserData from '../features/UserData/useUserData';
 import useAllMarkets from '../features/AllMarkets/useAllMarkets';
-import moment from 'moment';
-import { DirectDateCancleButton, UserInputsDiv } from '../CSS/UserInputsStyled';
+import {
+  DirectDateCancleButton,
+  SearchListItem,
+  SearchResultTab,
+  UserInputsDiv,
+} from '../CSS/UserInputsStyled';
 
 export default function UserInputs() {
-  const { allMarkets, onChangeSearch, searchResult } = useAllMarkets();
+  const { allMarkets, onChangeSearch, inputValue, searchResult, onClickSelectMarket } =
+    useAllMarkets();
   const {
     onChangeUserInput,
     onClickGetResult,
@@ -21,13 +28,12 @@ export default function UserInputs() {
     onClickDirectDateCancle,
   } = useUserData();
 
-  console.log(userData);
-
   return (
     <UserInputsDiv>
       {directSelectDate ? (
         <>
           <TextField
+            style={{ marginBottom: 48 }}
             type="date"
             defaultValue={moment().format('YYYY-MM-DD')}
             onChange={onChangeDirectDate}
@@ -38,6 +44,7 @@ export default function UserInputs() {
         </>
       ) : (
         <TextField
+          style={{ marginBottom: 24 }}
           select
           value={prevDate}
           onChange={onChangePrevDate}
@@ -50,6 +57,27 @@ export default function UserInputs() {
           ))}
         </TextField>
       )}
+      <TextField
+        style={{ marginBottom: 12 }}
+        name="marketTicker"
+        type="text"
+        value={inputValue}
+        onChange={onChangeSearch}
+      ></TextField>
+      <SearchResultTab resultArr={searchResult}>
+        {searchResult &&
+          searchResult.map((e) => (
+            <SearchListItem onClick={() => onClickSelectMarket(e)}>
+              <img
+                width={48}
+                height={48}
+                src={`https://static.upbit.com/logos/${e.market.slice(4)}.png`}
+              />
+              <span style={{ marginLeft: 12 }}>{e.korean_name}</span>
+            </SearchListItem>
+          ))}
+      </SearchResultTab>
+      <TextField name="seedMoney" type="text" onChange={onChangeUserInput}></TextField>
     </UserInputsDiv>
   );
 }
