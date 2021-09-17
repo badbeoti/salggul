@@ -20,7 +20,11 @@ const userDataSlice = createSlice({
   name: 'userData',
   initialState: {
     isLoading: false,
-    data: {} as UserObj,
+    data: {
+      prevDate: '',
+      market: '',
+      seedMoney: '',
+    } as UserObj,
     error: '',
     result: { isGetResult: false } as ResultObj,
   },

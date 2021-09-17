@@ -81,7 +81,7 @@ export default function UserInputs() {
       <TextField
         style={{ backgroundColor: 'rgba(255,255,255,0.5)' }}
         name="seedMoney"
-        type="text"
+        type="number"
         onChange={onChangeUserInput}
       ></TextField>
     </UserInputsDiv>

@@ -4,7 +4,6 @@ import { MarketObj } from '../features/AllMarkets/slice';
 
 export const UserInputsDiv = styled.div({
   width: '80%',
-  minHeight: 200,
   borderRadius: 12,
   backgroundColor: '#addce4',
   boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
@@ -46,10 +45,10 @@ export const SearchResultTab = styled.div<{ resultArr: MarketObj[] }>((props) =>
   position: 'absolute',
   backgroundColor: props.resultArr.length ? 'rgba(255,255,255,1)' : 'unset',
   left: '50%',
-  top: 100,
+  top: 124,
   transform: 'translate(-50%, 0%)',
   width: '100%',
-  height: 200,
+  height: 300,
   display: props.resultArr.length ? 'flex' : 'none',
   flexDirection: 'column',
   justifyContent: 'flex-start',
