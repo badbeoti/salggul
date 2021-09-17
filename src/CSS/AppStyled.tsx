@@ -17,3 +17,20 @@ export const CenterCanvas = styled.div({
   justifyContent: 'flex-start',
   alignItems: 'center',
 });
+
+export const GetResultButton = styled.div({
+  width: 160,
+  height: 40,
+  fontSize: 16,
+  lineHeight: '16px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 20,
+  backgroundColor: '#ff7676',
+  color: '#ffffff',
+  fontWeight: 700,
+  boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
+  marginTop: 24,
+  paddingTop: 1,
+});

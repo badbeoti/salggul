@@ -1,8 +1,7 @@
-import { Background, CenterCanvas } from './CSS/AppStyled';
+import { Background, CenterCanvas, GetResultButton } from './CSS/AppStyled';
 import useAscentRates from './features/AscentRates/useAscentRates';
 import useAllMarkets from './features/AllMarkets/useAllMarkets';
 import useUserData from './features/UserData/useUserData';
-import { resultTemplate } from './utils';
 import UserInputs from './components/UserInputs';
 import ResultBoard from './components/ResultBoard';
 
@@ -15,7 +14,7 @@ function App() {
     <Background>
       <CenterCanvas>
         <UserInputs />
-        <button onClick={onClickGetResult}>getResult</button>
+        <GetResultButton onClick={onClickGetResult}>결과 확인</GetResultButton>
         <ResultBoard />
       </CenterCanvas>
     </Background>
