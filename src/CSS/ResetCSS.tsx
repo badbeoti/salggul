@@ -7,7 +7,9 @@ export default function ResetCSS() {
       styles={css`
         ${emotionReset}
 
-        *, *::after, *::before {
+        *,
+        *::after,
+        *::before {
           box-sizing: border-box;
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;

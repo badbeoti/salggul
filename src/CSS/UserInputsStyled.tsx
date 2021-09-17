@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
+import TextField from '@material-ui/core/TextField';
 import { MarketObj } from '../features/AllMarkets/slice';
 
 export const UserInputsDiv = styled.div({
   width: '80%',
   minHeight: 200,
-  borderRadius: 24,
+  borderRadius: 12,
   backgroundColor: '#addce4',
   boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
   display: 'flex',
@@ -15,6 +16,13 @@ export const UserInputsDiv = styled.div({
   paddingTop: 12,
   paddingBottom: 12,
   position: 'relative',
+});
+
+export const DefaultDateSelect = styled(TextField)({
+  '.MuiSelect-root.MuiSelect-select.MuiInputBase-input.MuiInput-input': {
+    paddingLeft: 12,
+    paddingRight: 24,
+  },
 });
 
 export const DirectDateCancleButton = styled.div({
@@ -36,7 +44,7 @@ export const DirectDateCancleButton = styled.div({
 
 export const SearchResultTab = styled.div<{ resultArr: MarketObj[] }>((props) => ({
   position: 'absolute',
-  backgroundColor: props.resultArr.length ? 'rgba(255,255,255,0.5)' : 'unset',
+  backgroundColor: props.resultArr.length ? 'rgba(255,255,255,1)' : 'unset',
   left: '50%',
   top: 100,
   transform: 'translate(-50%, 0%)',

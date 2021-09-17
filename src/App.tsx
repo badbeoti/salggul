@@ -17,52 +17,6 @@ function App() {
         <UserInputs />
         <button onClick={onClickGetResult}>getResult</button>
         <ResultBoard />
-        <br />
-        <button
-          onClick={() =>
-            rates7.forEach((e) =>
-              console.log(`${e.code} ${Number(e[`changeRate${7}Days`] * 100).toFixed(2)}%`)
-            )
-          }
-        >
-          7
-        </button>
-        <button
-          onClick={() =>
-            rates30.forEach((e) =>
-              console.log(`${e.code} ${Number(e[`changeRate${30}Days`] * 100).toFixed(2)}%`)
-            )
-          }
-        >
-          30
-        </button>
-        <button
-          onClick={() =>
-            rates90.forEach((e) =>
-              console.log(`${e.code} ${Number(e[`changeRate${90}Days`] * 100).toFixed(2)}%`)
-            )
-          }
-        >
-          90
-        </button>
-        <button
-          onClick={() =>
-            rates180.forEach((e) =>
-              console.log(`${e.code} ${Number(e[`changeRate${180}Days`] * 100).toFixed(2)}%`)
-            )
-          }
-        >
-          180
-        </button>
-        <button
-          onClick={() =>
-            rates365.forEach((e) =>
-              console.log(`${e.code} ${Number(e[`changeRate${365}Days`] * 100).toFixed(2)}%`)
-            )
-          }
-        >
-          365
-        </button>
       </CenterCanvas>
     </Background>
   );

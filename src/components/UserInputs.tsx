@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import useUserData from '../features/UserData/useUserData';
 import useAllMarkets from '../features/AllMarkets/useAllMarkets';
 import {
+  DefaultDateSelect,
   DirectDateCancleButton,
   SearchListItem,
   SearchResultTab,
@@ -33,7 +34,7 @@ export default function UserInputs() {
       {directSelectDate ? (
         <>
           <TextField
-            style={{ marginBottom: 48 }}
+            style={{ marginBottom: 48, backgroundColor: 'rgba(255,255,255,0.5)' }}
             type="date"
             defaultValue={moment().format('YYYY-MM-DD')}
             onChange={onChangeDirectDate}
@@ -43,8 +44,8 @@ export default function UserInputs() {
           </DirectDateCancleButton>
         </>
       ) : (
-        <TextField
-          style={{ marginBottom: 24 }}
+        <DefaultDateSelect
+          style={{ marginBottom: 48, backgroundColor: 'rgba(255,255,255,0.5)' }}
           select
           value={prevDate}
           onChange={onChangePrevDate}
@@ -55,10 +56,10 @@ export default function UserInputs() {
               {e.label}
             </option>
           ))}
-        </TextField>
+        </DefaultDateSelect>
       )}
       <TextField
-        style={{ marginBottom: 12 }}
+        style={{ marginBottom: 12, backgroundColor: 'rgba(255,255,255,0.5)' }}
         name="marketTicker"
         type="text"
         value={inputValue}
@@ -77,7 +78,12 @@ export default function UserInputs() {
             </SearchListItem>
           ))}
       </SearchResultTab>
-      <TextField name="seedMoney" type="text" onChange={onChangeUserInput}></TextField>
+      <TextField
+        style={{ backgroundColor: 'rgba(255,255,255,0.5)' }}
+        name="seedMoney"
+        type="text"
+        onChange={onChangeUserInput}
+      ></TextField>
     </UserInputsDiv>
   );
 }
