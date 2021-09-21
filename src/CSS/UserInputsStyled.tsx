@@ -48,7 +48,7 @@ export const SearchResultTab = styled.div<{ resultArr: MarketObj[] }>((props) =>
   top: 124,
   transform: 'translate(-50%, 0%)',
   width: '100%',
-  height: 300,
+  maxHeight: 300,
   display: props.resultArr.length ? 'flex' : 'none',
   flexDirection: 'column',
   justifyContent: 'flex-start',

@@ -31,6 +31,7 @@ export function* handleGetResult() {
 
       if (value === '') {
         yield put(userDataSlice.actions.getError(`${emptyKey(key)}필드를 입력해주세요.`));
+        yield put(userDataSlice.actions.setResult({ isGetResult: false } as ResultObj));
         return;
       }
     }
@@ -39,6 +40,7 @@ export function* handleGetResult() {
 
     if (prevPrice === 0) {
       yield put(userDataSlice.actions.getError('선택하신 날짜의 가격 데이터를 찾을 수 없습니다.'));
+      yield put(userDataSlice.actions.setResult({ isGetResult: false } as ResultObj));
       return;
     }
 
