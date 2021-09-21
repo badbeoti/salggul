@@ -32,6 +32,7 @@ export default function useAllMarkets() {
   useEffect(() => {
     if (inputValue === '') {
       setSearchResult([]);
+      dispatch(userDataSlice.actions.setData({ name: 'market', value: '' }));
       return;
     }
 
