@@ -5,8 +5,9 @@ export const Background = styled.div({
   justifyContent: 'center',
   alignItems: 'flex-start',
   width: '100%',
-  height: '100vh',
+  minHeight: '100vh',
   backgroundColor: '#addce4',
+  paddingBottom: 48,
 });
 
 export const CenterCanvas = styled.div({
@@ -32,6 +33,8 @@ export const GetResultButton = styled.div({
   fontWeight: 700,
   boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
   marginTop: 24,
+  userSelect: 'none',
+  cursor: 'pointer',
 });
 
 export const GetResetButton = styled.div({
@@ -47,4 +50,6 @@ export const GetResetButton = styled.div({
   fontWeight: 500,
   boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
   marginTop: 12,
+  userSelect: 'none',
+  cursor: 'pointer',
 });

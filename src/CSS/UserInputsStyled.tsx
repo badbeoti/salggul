@@ -44,6 +44,8 @@ export const DirectDateCancleButton = styled.div({
   left: '50%',
   top: 60,
   transform: 'translate(-50%, 0%)',
+  userSelect: 'none',
+  cursor: 'pointer',
 });
 
 export const SearchResultTab = styled.div<{ resultArr: MarketObj[] }>((props) => ({

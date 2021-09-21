@@ -20,29 +20,26 @@ export default function useUserData() {
     (state: RootState) => state.userDataSlice.isDirectSelectDate
   );
 
-  const [directSelectDate, setDirectSelectDate] = useState<boolean>(false);
-  const [prevDate, setPrevDate] = useState<string>('30');
-
   const dateLabels = [
     {
       value: '7',
-      label: '일주일 전',
+      label: '1주일',
     },
     {
       value: '30',
-      label: '한 달전',
+      label: '1개월',
     },
     {
       value: '90',
-      label: '3개월 전',
+      label: '3개월',
     },
     {
       value: '180',
-      label: '6개월 전',
+      label: '6개월',
     },
     {
       value: '365',
-      label: '작년',
+      label: '1년',
     },
     {
       value: '0',
@@ -101,11 +98,7 @@ export default function useUserData() {
     userData,
     userResult,
     dateLabels,
-    directSelectDate,
     onChangePrevDate,
-    prevDate,
-    setPrevDate,
-    setDirectSelectDate,
     onChangeDirectDate,
     onClickDirectDateCancle,
     userInputsError,
