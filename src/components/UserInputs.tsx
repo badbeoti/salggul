@@ -51,7 +51,7 @@ export default function UserInputs() {
         >
           {dateLabels.map((e) => (
             <option key={e.value} value={e.value}>
-              {e.label}
+              {e.value === '0' ? e.label : e.label + ' 전'}
             </option>
           ))}
         </DefaultDateSelect>

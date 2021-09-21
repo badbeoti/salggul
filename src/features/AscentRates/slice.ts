@@ -16,14 +16,18 @@ const ascentRatesSlice = createSlice({
     isLoading: false,
     rates: [] as RateObj[],
     error: '',
+    curDateTab: '7',
   },
   reducers: {
     getRates: (state) => {
       state.isLoading = true;
     },
-    setRates: (state, action: PayloadAction<Array<RateObj>>) => {
+    setRates: (state, action: PayloadAction<RateObj[]>) => {
       state.rates = action.payload;
       state.isLoading = false;
+    },
+    setCurDateTab: (state, action: PayloadAction<string>) => {
+      state.curDateTab = action.payload;
     },
     getError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
