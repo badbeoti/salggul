@@ -7,6 +7,7 @@ import useUserData from '../features/UserData/useUserData';
 import useAllMarkets from '../features/AllMarkets/useAllMarkets';
 import {
   DefaultDateSelect,
+  DefaultTextField,
   DirectDateCancleButton,
   SearchListItem,
   SearchResultTab,
@@ -55,13 +56,14 @@ export default function UserInputs() {
           ))}
         </DefaultDateSelect>
       )}
-      <TextField
+      <DefaultTextField
         style={{ marginBottom: 12, backgroundColor: 'rgba(255,255,255,0.5)' }}
         name="marketTicker"
         type="text"
         value={searchInput}
         onChange={onChangeSearch}
-      ></TextField>
+        placeholder="코인명/심볼 검색"
+      ></DefaultTextField>
       <SearchResultTab resultArr={searchResult}>
         {searchResult &&
           searchResult.map((e) => (
@@ -76,13 +78,14 @@ export default function UserInputs() {
             </SearchListItem>
           ))}
       </SearchResultTab>
-      <TextField
+      <DefaultTextField
         style={{ backgroundColor: 'rgba(255,255,255,0.5)' }}
         name="seedMoney"
         type="number"
         onChange={onChangeUserInput}
         value={userSeedmoneyInput}
-      ></TextField>
+        placeholder="매수 금액"
+      ></DefaultTextField>
     </UserInputsDiv>
   );
 }

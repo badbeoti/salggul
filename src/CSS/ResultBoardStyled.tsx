@@ -19,3 +19,37 @@ export const ResultAcsentSpan = styled.span<{ ascent: number }>((props) => ({
   color: props.ascent > 0 ? 'red' : 'blue',
   whiteSpace: 'pre-line',
 }));
+
+export const ResultInputValueSpan = styled.span({
+  fontSize: 16,
+  fontWeight: 500,
+  lineHeight: '16px',
+  '& + &': {
+    marginTop: 12,
+  },
+});
+
+export const ResultInputErrorSpan = styled.span({
+  fontSize: 16,
+  fontWeight: 500,
+  lineHeight: '16px',
+  color: 'red',
+});
+
+export const ResultSpanWrap = styled.div((props) => ({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-around',
+  marginTop: 24,
+  fontFamily: 'Noto Sans KR',
+}));
+
+export const ResultBeforeAfterSpanWrap = styled.div<{ ascent?: number }>((props) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: 16,
+  fontWeight: 500,
+  lineHeight: '16px',
+  color: props.ascent ? (props.ascent > 0 ? 'red' : 'blue') : '#000000',
+}));

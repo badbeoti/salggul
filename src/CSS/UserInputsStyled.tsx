@@ -24,6 +24,12 @@ export const DefaultDateSelect = styled(TextField)({
   },
 });
 
+export const DefaultTextField = styled(TextField)({
+  input: {
+    paddingLeft: 12,
+  },
+});
+
 export const DirectDateCancleButton = styled.div({
   position: 'absolute',
   width: 96,
@@ -38,7 +44,6 @@ export const DirectDateCancleButton = styled.div({
   left: '50%',
   top: 60,
   transform: 'translate(-50%, 0%)',
-  paddingTop: 1,
 });
 
 export const SearchResultTab = styled.div<{ resultArr: MarketObj[] }>((props) => ({
