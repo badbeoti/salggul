@@ -13,6 +13,7 @@ const allMarketsSlice = createSlice({
     isLoading: false,
     markets: [] as MarketObj[],
     error: '',
+    searchInput: '',
   },
   reducers: {
     getMarkets: (state) => {
@@ -21,6 +22,9 @@ const allMarketsSlice = createSlice({
     setMarkets: (state, action: PayloadAction<Array<MarketObj>>) => {
       state.markets = action.payload;
       state.isLoading = false;
+    },
+    setSearchInput: (state, action: PayloadAction<string>) => {
+      state.searchInput = action.payload;
     },
     getError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;

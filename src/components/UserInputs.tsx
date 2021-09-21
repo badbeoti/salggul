@@ -14,24 +14,21 @@ import {
 } from '../CSS/UserInputsStyled';
 
 export default function UserInputs() {
-  const { allMarkets, onChangeSearch, inputValue, searchResult, onClickSelectMarket } =
-    useAllMarkets();
+  const { onChangeSearch, searchInput, searchResult, onClickSelectMarket } = useAllMarkets();
   const {
     onChangeUserInput,
-    onClickGetResult,
-    userData,
-    userResult,
     dateLabels,
-    directSelectDate,
     onChangePrevDate,
-    prevDate,
     onChangeDirectDate,
     onClickDirectDateCancle,
+    userSeedmoneyInput,
+    userPrevDateInput,
+    userDirectSelectDate,
   } = useUserData();
 
   return (
     <UserInputsDiv>
-      {directSelectDate ? (
+      {userDirectSelectDate ? (
         <>
           <TextField
             style={{ marginBottom: 48, backgroundColor: 'rgba(255,255,255,0.5)' }}
@@ -47,7 +44,7 @@ export default function UserInputs() {
         <DefaultDateSelect
           style={{ marginBottom: 48, backgroundColor: 'rgba(255,255,255,0.5)' }}
           select
-          value={prevDate}
+          value={userPrevDateInput}
           onChange={onChangePrevDate}
           SelectProps={{ native: true }}
         >
@@ -62,7 +59,7 @@ export default function UserInputs() {
         style={{ marginBottom: 12, backgroundColor: 'rgba(255,255,255,0.5)' }}
         name="marketTicker"
         type="text"
-        value={inputValue}
+        value={searchInput}
         onChange={onChangeSearch}
       ></TextField>
       <SearchResultTab resultArr={searchResult}>
@@ -73,6 +70,7 @@ export default function UserInputs() {
                 width={48}
                 height={48}
                 src={`https://static.upbit.com/logos/${e.market.slice(4)}.png`}
+                alt="market-img"
               />
               <span style={{ marginLeft: 12 }}>{e.korean_name}</span>
             </SearchListItem>
@@ -83,6 +81,7 @@ export default function UserInputs() {
         name="seedMoney"
         type="number"
         onChange={onChangeUserInput}
+        value={userSeedmoneyInput}
       ></TextField>
     </UserInputsDiv>
   );

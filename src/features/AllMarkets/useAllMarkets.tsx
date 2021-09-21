@@ -9,20 +9,24 @@ import userDataSlice from '../UserData/slice';
 export default function useAllMarkets() {
   const dispatch = useDispatch();
   const defaultMarkets = (state: RootState) => state.allMarketsSlice.markets;
-  const [inputValue, setInputValue] = useState<string>('');
   const [searchResult, setSearchResult] = useState<MarketObj[]>([]);
 
   const allMarkets = useSelector(defaultMarkets);
+  const searchInput = useSelector((state: RootState) => state.allMarketsSlice.searchInput);
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setInputValue(value);
+    dispatch(allMarketsSlice.actions.setSearchInput(value));
   };
 
   const onClickSelectMarket = (item: MarketObj) => {
     dispatch(userDataSlice.actions.setData({ name: 'market', value: item.market }));
-    setInputValue(item.market);
+    dispatch(allMarketsSlice.actions.setSearchInput(item.market));
     setSearchResult([]);
+  };
+
+  const getMarketTickers = (market: string) => {
+    return allMarkets.find((e) => e.market === market)?.korean_name;
   };
 
   useEffect(() => {
@@ -30,7 +34,7 @@ export default function useAllMarkets() {
   }, []);
 
   useEffect(() => {
-    if (inputValue === '') {
+    if (searchInput === '') {
       setSearchResult([]);
       dispatch(userDataSlice.actions.setData({ name: 'market', value: '' }));
       return;
@@ -38,12 +42,19 @@ export default function useAllMarkets() {
 
     const result = [...allMarkets].filter(
       (e) =>
-        e.english_name.toLowerCase().includes(inputValue) ||
-        e.korean_name.toLowerCase().includes(inputValue) ||
-        e.market.slice(4).toLowerCase().includes(inputValue)
+        e.english_name.toLowerCase().includes(searchInput) ||
+        e.korean_name.toLowerCase().includes(searchInput) ||
+        e.market.slice(4).toLowerCase().includes(searchInput)
     );
     setSearchResult(result);
-  }, [inputValue]);
+  }, [searchInput]);
 
-  return { allMarkets, onChangeSearch, searchResult, inputValue, onClickSelectMarket };
+  return {
+    allMarkets,
+    onChangeSearch,
+    searchResult,
+    onClickSelectMarket,
+    searchInput,
+    getMarketTickers,
+  };
 }
