@@ -34,3 +34,19 @@ export const GetResultButton = styled.div({
   marginTop: 24,
   paddingTop: 1,
 });
+
+export const GetResetButton = styled.div({
+  width: 80,
+  height: 28,
+  fontSize: 12,
+  lineHeight: '12px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 14,
+  backgroundColor: '#f9f9f9',
+  fontWeight: 700,
+  boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
+  marginTop: 12,
+  paddingTop: 1,
+});

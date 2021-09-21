@@ -11,7 +11,11 @@ export const ResultBoardDiv = styled.div({
   justifyContent: 'center',
   alignItems: 'center',
   marginTop: 24,
-  paddingTop: 12,
-  paddingBottom: 12,
+  padding: 12,
   position: 'relative',
 });
+
+export const ResultAcsentSpan = styled.span<{ ascent: number }>((props) => ({
+  color: props.ascent > 0 ? 'red' : 'blue',
+  whiteSpace: 'pre-line',
+}));
