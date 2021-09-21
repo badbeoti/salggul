@@ -32,7 +32,6 @@ export const GetResultButton = styled.div({
   fontWeight: 700,
   boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
   marginTop: 24,
-  paddingTop: 1,
 });
 
 export const GetResetButton = styled.div({
@@ -45,8 +44,7 @@ export const GetResetButton = styled.div({
   alignItems: 'center',
   borderRadius: 14,
   backgroundColor: '#f9f9f9',
-  fontWeight: 700,
+  fontWeight: 500,
   boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.1)',
   marginTop: 12,
-  paddingTop: 1,
 });

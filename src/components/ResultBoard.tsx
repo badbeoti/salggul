@@ -1,26 +1,71 @@
 import useUserData from '../features/UserData/useUserData';
 import useAllMarkets from '../features/AllMarkets/useAllMarkets';
 import { resultTemplate } from '../utils';
-import { ResultAcsentSpan, ResultBoardDiv } from '../CSS/ResultBoardStyled';
+import {
+  ResultAcsentSpan,
+  ResultBeforeAfterSpanWrap,
+  ResultBoardDiv,
+  ResultInputErrorSpan,
+  ResultInputValueSpan,
+  ResultSpanWrap,
+} from '../CSS/ResultBoardStyled';
 
 export default function ResultBoard() {
-  const { userData, userResult, userInputsError, onClickResetUserData } = useUserData();
+  const { userData, userResult, userInputsError } = useUserData();
   const { getMarketTickers } = useAllMarkets();
+
+  if (userInputsError)
+    return (
+      <ResultBoardDiv>
+        <ResultInputErrorSpan>{userInputsError}</ResultInputErrorSpan>
+      </ResultBoardDiv>
+    );
 
   return (
     <>
       <ResultBoardDiv>
-        <span>{userData.prevDate && `매수일 : ${userData.prevDate}`}</span>
-        <span>
-          {userData.seedMoney &&
-            `매수액수 : ${Number(userData.seedMoney).toLocaleString('ko-KR') + '원'}`}
-        </span>
-        <span>{userData.market && `매수종목 : ${getMarketTickers(userData.market)}`}</span>
-        {userInputsError && <span>{userInputsError}</span>}
+        {userData.prevDate && <ResultInputValueSpan>{userData.prevDate}에</ResultInputValueSpan>}
+        {userData.seedMoney && (
+          <ResultInputValueSpan>
+            {Number(userData.seedMoney).toLocaleString('ko-KR')}원으로
+          </ResultInputValueSpan>
+        )}
+        {userData.market && (
+          <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+            <img
+              width={40}
+              height={40}
+              src={`https://static.upbit.com/logos/${userData.market.slice(4)}.png`}
+              alt="market-img"
+              style={{ marginRight: 4 }}
+            />
+            <ResultInputValueSpan>
+              {getMarketTickers(userData.market)}을(를) 살시 잔고변화
+            </ResultInputValueSpan>
+          </div>
+        )}
         {userResult.isGetResult && (
-          <ResultAcsentSpan ascent={userResult.ascent}>
-            {resultTemplate(userResult.curSeedMoney, userResult.ascent)}
-          </ResultAcsentSpan>
+          <ResultSpanWrap>
+            <ResultBeforeAfterSpanWrap>
+              <span>before</span>
+              <span>{Number(userData.seedMoney).toLocaleString('ko-KR') + '원'}</span>
+            </ResultBeforeAfterSpanWrap>
+            <ResultBeforeAfterSpanWrap ascent={userResult.ascent}>
+              <span>after</span>
+              <span>{userResult.curSeedMoney.toLocaleString('ko-KR')}</span>
+              <span>({(userResult.ascent * 100).toFixed(2)}%)</span>
+              <span>
+                {userResult.ascent > 0
+                  ? `+${(userResult.curSeedMoney - Number(userData.seedMoney)).toLocaleString(
+                      'ko-KR'
+                    )}`
+                  : `-${(Number(userData.seedMoney) - userResult.curSeedMoney).toLocaleString(
+                      'ko-KR'
+                    )}`}
+                원
+              </span>
+            </ResultBeforeAfterSpanWrap>
+          </ResultSpanWrap>
         )}
       </ResultBoardDiv>
     </>
