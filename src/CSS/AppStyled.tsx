@@ -17,6 +17,7 @@ export const CenterCanvas = styled.div({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
+  paddingTop: 24,
 });
 
 export const GetResultButton = styled.div({
@@ -52,4 +53,17 @@ export const GetResetButton = styled.div({
   marginTop: 12,
   userSelect: 'none',
   cursor: 'pointer',
+});
+
+export const NotiSpan = styled.span({
+  fontWeight: 600,
+  fontSize: 12,
+  lineHeight: '12px',
+  color: '#adaca7',
+});
+
+export const TitleSpan = styled.span({
+  fontSize: 24,
+  lineHeight: '24px',
+  color: '#000000',
 });

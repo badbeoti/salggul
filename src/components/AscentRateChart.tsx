@@ -20,6 +20,7 @@ export default function AscentRateChart() {
 
   return (
     <AscentRateChartDiv>
+      <span style={{ color: '#ffffff', fontWeight: 700, marginBottom: 4 }}>상승률 순위</span>
       <AscentRateChartTab>
         {dateLabels.map(
           (date) =>
