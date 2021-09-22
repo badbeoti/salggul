@@ -9,9 +9,9 @@ export const AscentRateChartDiv = styled.div({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  marginTop: 24,
+  marginTop: 4,
   paddingTop: 12,
-  paddingBottom: 12,
+  paddingBottom: 8,
   position: 'relative',
 });
 
@@ -23,7 +23,7 @@ export const AscentRateChartTab = styled.div({
   color: '#ffffff',
   userSelect: 'none',
   fontFamily: 'Noto Sans KR',
-  marginBottom: 12,
+  marginBottom: 8,
 });
 
 export const AscentRateChartTabItem = styled.div<{ isSelect: boolean }>((props) => ({
