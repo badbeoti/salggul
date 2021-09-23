@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# Salggul
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Salggul(살껄)은 업비트에서 공식적으로 배포하는 open API를 활용해서 만든 시뮬레이션 웹앱입니다. 유저는 가상의 매수 일자와 매수 종목(코인), 매수 금액을 선택해서 매수 일자와 현재의 잔고 변화를 확인할 수 있습니다. 또한 업비트 상승률 순위를 가져와 상위권에 있는 종목들을 해당하는 매수 시점에 매수했다면 현 잔고는 어느 정도로 상승 또는 하락하는지 확인할 수 있습니다.
 
-## Available Scripts
+[https://www.salggul.net](https://www.salggul.net/)
 
-In the project directory, you can run:
+## Use skill
 
-### `yarn start`
+Front
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- react
+- redux, redux-toolkit, redux-saga
+- typescript
+- moment
+- emotion
+- AWS Amplify
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Summary description
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- typescript 사용
+- redux와 redux-toolkit을 사용하여 상태 관리
+- redux-saga를 사용하여 비동기 통신 관리
+- moment.js를 사용하여 Date value 관리
+- emotion을 사용하여 스타일 컴포넌트 제작
+- AWS Amplify를 사용하여 배포 / 간단한 CI/CD 설정
